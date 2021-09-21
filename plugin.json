@@ -1,0 +1,21 @@
+{
+  "author":"KAT & Company",
+  "pluginName": "KAT & Company's Wistia Project Plugin",
+  "pluginDescription": "The Wistia Project Plugin is a plugin that displays a list of filterable videos (by video section) from a Wistia project. Clicking a video card allows users to view details for that video including the playback of it.",
+  "supportEmail":"webmaster@katandcompany.com",
+  "control": {
+    "content":{
+      "enabled":false
+    },
+    "design":{
+      "enabled":false
+    },
+    "settings":{
+      "enabled":true
+    }
+  },
+  "widget":{},
+  "features" : [],
+  "webpack": "8080",
+  "languages" : ["en"]
+}

@@ -1,5 +1,5 @@
-# BuildFire React Plugin Template
-The following template uses Webpack, React, and Babel in order to provide many features out of the box
+#  Wistia Plugin
+The Wistia Plugin is a Buildfire plugin built using their React plugin template. The template uses Webpack, React, and Babel in order to provide many features out of the box.
 
 - React/JSX (Preact Compat)
 - Hot Reloading
@@ -7,21 +7,24 @@ The following template uses Webpack, React, and Babel in order to provide many f
 - Modules
 - Minification
 
+The core dependencites of this plugin are:
+- React
+- React DOM
+- React Indiana Drag Scroll
+- React Player
+- SWR
 ## Getting Started
 Be sure to have the latest [BuildFire CLI](https://github.com/BuildFire/sdk-cli) installed in your system.
 
-    # Download the latest SDK if you haven't already
-    $ buildfire create
+### Download the latest SDK if you haven't already
+$ buildfire create
 
-    # Once inside the SDK's folder
-    $ buildfire init react <pluginName>
+### Go to the plugins folder for the SDK and clone this repo
+$ cd BuildFireSDK/plugins
+$ gh repo clone katandcompany/wistiaPlugin
+### After cloning repo, go into plugin folder and run NPM's install command
+$ cd wistiaPlugin
+$ npm i
+### After installation, run
+$ npm start
 
-    # (Follow the output instructions)
-
-## Usage
-Go to the plugin folder and run
-
-`$ npm start`
-# wistiaPlugin
-# wistiaPlugin
-# wistiaPlugin

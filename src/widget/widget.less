@@ -1,0 +1,131 @@
+body{
+  background-color:var(--bf-theme-background,#FFFFFF);
+  color:var(--bf-theme-body-text,#000000);
+}
+html,
+body,
+body > #mount{
+  height:100%;
+}
+.error-message-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 20px;
+}
+.error-message-container p:last-child{
+  margin-bottom:0;
+}
+ .project-sections{
+  background-color:var(--bf-theme-primary,#FFFFFF);
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:flex-start;
+  align-items:center;
+  width:100%;
+  height:auto;
+  overflow-x:scroll !important;
+  overflow-y:hidden !important;
+  position:fixed;
+  top:0;
+  white-space:nowrap;
+  z-index:100;
+}
+.project-sections a.btn{
+  border:none;
+  -moz-border-radius:0;
+  -webkit-border-radius:0;
+  border-radius:0;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  color:var(--bf-theme-body-text,#000000) !important;
+  flex:1 0 auto;
+  font-size:15px;
+  font-weight:500;
+  height:50px;
+  line-height:20px;
+  margin:0;
+  padding:15px;
+}
+.project-videos{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding:60px 20px 10px 20px;
+}
+.project-videos > .wistia-card{
+  border:1px solid #dddddd !important;
+  height:auto;
+  margin:10px 0;
+  overflow:hidden;
+  padding:10px;
+  width:100%;
+}
+.project-videos > .wistia-card > .thumbnail-container{
+  border:1px solid #dddddd;
+  display:block;
+  height:auto;
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+}
+.project-videos > .wistia-card > .thumbnail-container > img{
+  left:50%;
+  position:absolute;
+  transform: translate(-50%, -50%);
+  top:50%;
+}
+.project-videos > .wistia-card > .caption{
+  clear:both;
+  color:var(--bf-theme-body-text,#000000);
+  display:block;
+  margin-top:10px;
+  width:100%;
+}
+.project-videos > .wistia-card > .caption > .caption-title{
+  font-size:18px;
+}
+.video-details{
+  height:100%;
+}
+.video-details > .react-player-container {
+  position: relative;
+  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+}
+.video-details > .react-player-container > .react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.video-details > .video-metadata > .video-title{
+  border-top:1px solid #dddddd;
+  border-bottom:1px solid #dddddd;
+  font-size:21px;
+  font-weight:700;
+  margin:0;
+  padding:20px;
+}
+@media (min-width:640px){
+  .project-videos{
+    align-items:stretch;
+    flex-direction:row;
+    flex-wrap:wrap;
+  }
+  .project-videos > .wistia-card{
+    flex-basis:calc(50% - 10px);
+  }
+}
+@media (min-width:1024px){
+  .project-videos > .wistia-card{
+    flex-basis:calc(33.333333% - 10px);
+  }    
+}
