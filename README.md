@@ -21,9 +21,11 @@ Be sure to have the latest [BuildFire CLI](https://github.com/BuildFire/sdk-cli)
 
 ### Go to the plugins folder for the SDK and clone this repo
 `$ cd BuildFireSDK/plugins`
+
 `$ gh repo clone katandcompany/wistiaPlugin`
 ### After cloning repo, go into plugin folder and run NPM's install command
 `$ cd wistiaPlugin`
+
 `$ npm i`
 ### After installation, run
 `$ npm start`
