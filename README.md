@@ -17,14 +17,14 @@ The core dependencites of this plugin are:
 Be sure to have the latest [BuildFire CLI](https://github.com/BuildFire/sdk-cli) installed in your system.
 
 ### Download the latest SDK if you haven't already
-$ buildfire create
+`$ buildfire create`
 
 ### Go to the plugins folder for the SDK and clone this repo
-$ cd BuildFireSDK/plugins
-$ gh repo clone katandcompany/wistiaPlugin
+`$ cd BuildFireSDK/plugins`
+`$ gh repo clone katandcompany/wistiaPlugin`
 ### After cloning repo, go into plugin folder and run NPM's install command
-$ cd wistiaPlugin
-$ npm i
+`$ cd wistiaPlugin`
+`$ npm i`
 ### After installation, run
-$ npm start
+`$ npm start`
 
