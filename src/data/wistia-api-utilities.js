@@ -1,3 +1,10 @@
+/**
+ * A function that gets an array of modified video objects.
+ *
+ * @param array videos
+ * @param string filter
+ * @returns array videoList
+ */
 export const getVideoList = (videos, filter) => {
   const filteredVideos = (filter !== 'All') ? videos.filter(video => video.section === filter) : videos;
   const videoList = filteredVideos.map((video) => {
@@ -12,6 +19,12 @@ export const getVideoList = (videos, filter) => {
   return videoList;
 };
 
+/**
+ * A function that gets an array of section filters.
+ *
+ * @param array videos
+ * @returns array filteredSectionList
+ */
 export const getSectionList = (videos) => {
   const sectionList = [...new Set(videos.map((video) => {
     if (!video.section) return 'None';
