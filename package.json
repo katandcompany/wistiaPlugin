@@ -1,7 +1,7 @@
 {
-  "name": "plugin-template-react",
+  "name": "wistia-plugin",
   "version": "1.0.0",
-  "description": "BuildFire plugin template for React",
+  "description": "A BuildFire plugin for Wistia projects. It uses the BuildFire plugin react template.",
   "main": "",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
@@ -12,9 +12,10 @@
     "buildfire",
     "plugin",
     "webpack",
-    "react"
+    "react",
+    "wistia"
   ],
-  "author": "BuildFire",
+  "author": "KAT & Company",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.2.2",
