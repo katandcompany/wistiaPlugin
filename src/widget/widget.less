@@ -68,7 +68,18 @@ body > #mount{
   margin:10px 0;
   overflow:hidden;
   padding:10px;
+  position:relative;
   width:100%;
+}
+.project-videos > .wistia-card > .bookmark {
+  color:#FFFFFF;
+  font-size: 30px;
+  padding:5px;
+  position:absolute;
+  right:10px;
+  text-shadow: 0px 0px 2px #000000;
+  top:10px;
+  z-index:1;
 }
 .project-videos > .wistia-card > .thumbnail-container{
   border:1px solid #dddddd;
@@ -108,11 +119,24 @@ body > #mount{
 }
 .video-details > .video-metadata > .video-title{
   border-top:1px solid #dddddd;
-  border-bottom:1px solid #dddddd;
-  font-size:21px;
   font-weight:700;
+  line-height:1.25em;
   margin:0;
-  padding:20px;
+  padding:12px;
+}
+.video-details > .video-metadata > .video-actions {
+  align-items: center;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  font-size: 21px;
+  justify-content: flex-end;
+}
+.video-details > .video-metadata > .video-actions > .video-action {
+  padding:12px;
+}
+.video-details > .video-metadata > .video-actions > .video-action.share{
+  margin-right:auto;
 }
 @media (min-width:640px){
   .project-videos{
