@@ -58,3 +58,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# system files from development device
+.DS_Store
