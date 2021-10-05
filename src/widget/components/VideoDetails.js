@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactPlayer from 'react-player';
+import { PluginContext } from '../../contexts/PluginContext';
 
-const VideoDetails = ({ videoId, videoTitle }) => {
+const VideoDetails = () => {
+  const {
+    videoId,
+    videoTitle,
+    toggleBookmark,
+    isVideoBookmarked,
+    viewVideoExternally
+  } = useContext(PluginContext);
   const finalVideoURL = `https://katcommunications.wistia.com/medias/${videoId}`;
   const wistiaPlayerConfig = {
     wistia: {
@@ -12,6 +20,7 @@ const VideoDetails = ({ videoId, videoTitle }) => {
       },
     },
   };
+  const isBookmarked = isVideoBookmarked(videoId);
 
   return (
     <div className="video-details">
@@ -25,9 +34,26 @@ const VideoDetails = ({ videoId, videoTitle }) => {
           config={wistiaPlayerConfig} />
       </div>
       <div className="video-metadata">
-        <h1 className="video-title">
-          {videoTitle}
-        </h1>
+        <h1 className="video-title h4">{videoTitle}</h1>
+        <div className="video-actions">
+          <i
+            className="video-action share glyphicon glyphicon-screenshot"
+            role="button"
+            tabIndex="-1"
+            onClick={viewVideoExternally}
+            onKeyPress={viewVideoExternally}
+            data-video-url={finalVideoURL}
+          />
+          <i
+            className={`video-action bookmark glyphicon ${!isBookmarked ? 'glyphicon-star-empty' : 'glyphicon-star'}`}
+            role="button"
+            tabIndex="-1"
+            onClick={toggleBookmark}
+            onKeyPress={toggleBookmark}
+            data-video-id={videoId}
+            data-video-title={videoTitle}
+          />
+        </div>
       </div>
     </div>
   );

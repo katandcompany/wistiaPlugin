@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { WistiaContext } from '../../contexts/WistiaContext';
+import { PluginContext } from '../../contexts/PluginContext';
 
 const SectionListLink = ({ sectionId, active }) => {
-  const wistia = useContext(WistiaContext);
+  const { setCurrentFilter } = useContext(PluginContext);
   const linkClickEvent = (event) => {
-    wistia.setCurrentFilter(event.currentTarget.getAttribute('id'));
+    setCurrentFilter(event.currentTarget.getAttribute('id'));
   };
 
   return (

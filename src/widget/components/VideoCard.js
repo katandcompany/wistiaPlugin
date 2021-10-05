@@ -1,22 +1,26 @@
 import React, { useContext } from 'react';
-import { WistiaContext } from '../../contexts/WistiaContext';
+import { PluginContext } from '../../contexts/PluginContext';
 
 const VideoCard = ({
   id,
   title,
   section,
-  posterImg
+  posterImg,
+  isBookmarked
 }) => {
-  const wistia = useContext(WistiaContext);
+  const { bfHistory, setVideo, toggleBookmark } = useContext(PluginContext);
   const thumbnailAltText = `The thumbnail for the video titled ${title}`;
 
   const handleClick = (event) => {
+    event.preventDefault();
+    if (event.target.tagName === 'I') return;
     const clickedCard = event.currentTarget;
     const handlerData = {
-      videoId: clickedCard.getAttribute('data-video-id'),
-      videoTitle: clickedCard.getAttribute('data-video-title'),
+      id: clickedCard.getAttribute('data-video-id'),
+      title: clickedCard.getAttribute('data-video-title'),
     };
-    return wistia.setCurrentVideo(handlerData);
+    setVideo(handlerData);
+    bfHistory.push('Video Details', { showLabelInTitlebar: true });
   };
 
   return (
@@ -28,14 +32,19 @@ const VideoCard = ({
       data-video-title={title}
       onClick={handleClick}
       onKeyPress={handleClick}
-      href={`#${section}`}
+      href={`#${id}`}
     >
-      <span className="thumbnail-container">
-        <img src={posterImg} alt={thumbnailAltText} />
-      </span>
-      <span className="caption margin-top-ten padding-zero">
-        <b className="caption-title">{title}</b>
-      </span>
+      <i
+        className={`bookmark glyphicon ${isBookmarked ? 'glyphicon-star' : 'glyphicon-star-empty'}`}
+        role="button"
+        tabIndex="-1"
+        data-video-id={id}
+        data-video-title={title}
+        onClick={toggleBookmark}
+        onKeyPress={toggleBookmark}
+      />
+      <span className="thumbnail-container"><img src={posterImg} alt={thumbnailAltText} /></span>
+      <span className="caption margin-top-ten padding-zero"><b className="caption-title">{title}</b></span>
     </a>
   );
 };

@@ -1,40 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { getSettingsValue, getCollection } from '../../data/datastore-functions';
-import { settingsCollectionName } from '../../data/settings-variables';
+import { PluginContext } from '../../contexts/PluginContext';
+import VideoDetails from './VideoDetails';
+import VideoListings from './VideoListings';
 import ErrorMsg from './ErrorMsg';
-import WistiaVideosCollection from './WistiaVideosCollection';
 
 const Widget = () => {
-  const [errorMsg, setErrorMsg] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [projectId, setProjectId] = useState('');
+  const {
+    bfHistory,
+    bfSpinner,
+    errorMsg,
+    retreivedBookmark,
+    setRetreivedBookmark,
+    videoId,
+    videoTitle,
+    setVideo,
+    unsetVideo,
+    apiKey,
+    projectId,
+  } = useContext(PluginContext);
+
+  bfHistory.onPop(() => {
+    if (retreivedBookmark !== false) {
+      setRetreivedBookmark(false);
+    }
+    unsetVideo();
+    bfSpinner.hide();
+  });
 
   useEffect(() => {
-    getCollection(settingsCollectionName, (err, response) => {
-      if (err) setErrorMsg(err);
-      if (response && response.data) {
-        setApiKey(getSettingsValue(response.data, 'wistiaApiKey'));
-        setProjectId(getSettingsValue(response.data, 'wistiaProjectId'));
-      }
-    });
-  }, [getCollection, setApiKey, setProjectId]);
+    if (videoId && videoTitle) {
+      bfHistory.push('Video Details', { showLabelInTitlebar: true });
+    }
+  }, []);
 
-  return (
-    <>
-      { errorMsg && <ErrorMsg message={errorMsg} /> }
-      {
-        !errorMsg && apiKey && projectId
-        && (
-          <WistiaVideosCollection
-            apiKey={apiKey}
-            projectId={projectId}
-            errorHandler={setErrorMsg}
-          />
-        )
-      }
-    </>
-  );
+  useEffect(() => {
+    if (retreivedBookmark !== false) {
+      bfHistory.push('Video Details', { showLabelInTitlebar: true });
+      setVideo(retreivedBookmark);
+    }
+  }, [retreivedBookmark]);
+
+  if (errorMsg) return <ErrorMsg message={errorMsg} />;
+
+  if (videoId && videoTitle) {
+    return <VideoDetails />;
+  }
+
+  if (apiKey && projectId) return <VideoListings apiKey={apiKey} projectId={projectId} />;
+
+  return null;
 };
 
 export default hot(Widget);
