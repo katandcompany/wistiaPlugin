@@ -43,9 +43,7 @@ const Widget = () => {
 
   if (errorMsg) return <ErrorMsg message={errorMsg} />;
 
-  if (videoId && videoTitle) {
-    return <VideoDetails />;
-  }
+  if (videoId && videoTitle) return <VideoDetails />;
 
   if (apiKey && projectId) return <VideoListings apiKey={apiKey} projectId={projectId} />;
 

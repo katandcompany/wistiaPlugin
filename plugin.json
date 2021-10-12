@@ -15,7 +15,7 @@
     }
   },
   "widget":{},
-  "features" : [],
+  "features" : [{"name": "Sharing"}],
   "webpack": "8080",
   "languages" : ["en"]
 }

@@ -6,7 +6,8 @@
  * @returns array videoList
  */
 export const getVideoList = (videos, filter) => {
-  const filteredVideos = (filter !== 'All') ? videos.filter(video => video.section === filter) : videos;
+  const videoSet = videos.reduce((prev, curr) => prev.concat(curr));
+  const filteredVideos = (filter !== 'All') ? videoSet.filter(video => video.section === filter) : videoSet;
   const videoList = filteredVideos.map((video) => {
     const thumbUrl = video.thumbnail.url.split('?')[0].split('#')[0];
     return {
@@ -26,10 +27,11 @@ export const getVideoList = (videos, filter) => {
  * @returns array filteredSectionList
  */
 export const getSectionList = (videos) => {
-  const sectionList = [...new Set(videos.map((video) => {
-    if (!video.section) return 'None';
-    return video.section;
-  }))];
+  const sectionList = [...new Set(
+    videos
+      .reduce((prev, curr) => prev.concat(curr))
+      .map(item => item.section)
+  )];
   const filteredSectionList = sectionList.filter(value => value !== 'None');
   filteredSectionList.sort();
   filteredSectionList.unshift('All');

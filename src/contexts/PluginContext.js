@@ -5,12 +5,15 @@ import useCurrentVideo from '../hooks/useCurrentVideo';
 import usePluginSettings from '../hooks/usePluginSettings';
 import useSectionFilters from '../hooks/useSectionFilters';
 import useBookmarkActions from '../hooks/useBookmarkActions';
+import useVideoActions from '../hooks/useVideoActions';
 
 export const PluginContext = createContext({
   bfBookmarks: null,
   bfDeeplink: null,
+  bfDevice: null,
   bfHistory: null,
   bfNavigation: null,
+  bfNotes: null,
   bfSpinner: null,
   errorMsg: false,
   setErrorMsg: () => {},
@@ -31,14 +34,18 @@ export const PluginContext = createContext({
   setRetreivedBookmark: () => {},
   retreiveBookmarkedVideo: () => {},
   viewVideoExternally: () => {},
+  shareVideo: () => {},
+  addVideoNote: () => {}
 });
 
 export const PluginProvider = ({ children }) => {
   const {
     bfBookmarks,
     bfDeeplink,
+    bfDevice,
     bfHistory,
     bfNavigation,
+    bfNotes,
     bfSpinner
   } = useBuildfireObjects();
   const { errorMsg, setErrorMsg } = useErrorHandler();
@@ -60,18 +67,15 @@ export const PluginProvider = ({ children }) => {
     toggleBookmark,
     retreiveBookmarkedVideo
   } = useBookmarkActions();
-
-  // External Viewing
-  const viewVideoExternally = (event) => {
-    event.preventDefault();
-    bfNavigation.openWindow(event.currentTarget.getAttribute('data-video-url'), '_system');
-  };
+  const { viewVideoExternally, shareVideo, addVideoNote } = useVideoActions();
 
   const value = useMemo(() => ({
     bfBookmarks,
     bfDeeplink,
+    bfDevice,
     bfHistory,
     bfNavigation,
+    bfNotes,
     bfSpinner,
     errorMsg,
     setErrorMsg,
@@ -92,6 +96,8 @@ export const PluginProvider = ({ children }) => {
     toggleBookmark,
     retreiveBookmarkedVideo,
     viewVideoExternally,
+    shareVideo,
+    addVideoNote
   }), [
     errorMsg,
     videoId,

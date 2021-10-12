@@ -7,7 +7,13 @@ import VideoList from './VideoList';
 
 const VideoListings = ({ apiKey, projectId }) => {
   const { bfSpinner, sectionFilter, setErrorMsg } = useContext(PluginContext);
-  const { data, loading, wistiaError } = useWistiaApiRequest(apiKey, projectId);
+  const {
+    data,
+    loading,
+    wistiaError,
+    size,
+    setSize
+  } = useWistiaApiRequest(apiKey, projectId);
 
   useEffect(() => {
     if (wistiaError) setErrorMsg(wistiaError);
@@ -26,6 +32,7 @@ const VideoListings = ({ apiKey, projectId }) => {
       <>
         <SectionList sections={getSectionList(data)} />
         <VideoList videos={getVideoList(data, sectionFilter)} />
+        <button type="button" onClick={() => setSize(size + 1)}>Load More</button>
       </>
     );
   }

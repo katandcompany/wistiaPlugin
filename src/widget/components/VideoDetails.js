@@ -1,5 +1,12 @@
 import React, { useContext } from 'react';
 import ReactPlayer from 'react-player';
+import {
+  FaRegEdit,
+  FaExternalLinkAlt,
+  FaShareAlt,
+  FaStar,
+  FaRegStar
+} from 'react-icons/fa';
 import { PluginContext } from '../../contexts/PluginContext';
 
 const VideoDetails = () => {
@@ -8,7 +15,9 @@ const VideoDetails = () => {
     videoTitle,
     toggleBookmark,
     isVideoBookmarked,
-    viewVideoExternally
+    viewVideoExternally,
+    shareVideo,
+    addVideoNote
   } = useContext(PluginContext);
   const finalVideoURL = `https://katcommunications.wistia.com/medias/${videoId}`;
   const wistiaPlayerConfig = {
@@ -36,23 +45,49 @@ const VideoDetails = () => {
       <div className="video-metadata">
         <h1 className="video-title h4">{videoTitle}</h1>
         <div className="video-actions">
-          <i
-            className="video-action share glyphicon glyphicon-screenshot"
+          <span
+            className="video-action open-in-browser"
             role="button"
             tabIndex="-1"
             onClick={viewVideoExternally}
             onKeyPress={viewVideoExternally}
             data-video-url={finalVideoURL}
-          />
-          <i
-            className={`video-action bookmark glyphicon ${!isBookmarked ? 'glyphicon-star-empty' : 'glyphicon-star'}`}
+          >
+            <FaExternalLinkAlt />
+          </span>
+          <span
+            className="video-action add-note"
+            role="button"
+            tabIndex="-1"
+            onClick={addVideoNote}
+            onKeyPress={addVideoNote}
+            data-video-url={finalVideoURL}
+            data-video-title={videoTitle}
+          >
+            <FaRegEdit />
+          </span>
+          <span
+            className="video-action share"
+            role="button"
+            tabIndex="-1"
+            onClick={shareVideo}
+            onKeyPress={shareVideo}
+            data-video-url={finalVideoURL}
+            data-video-title={videoTitle}
+          >
+            <FaShareAlt />
+          </span>
+          <span
+            className="video-action bookmark"
             role="button"
             tabIndex="-1"
             onClick={toggleBookmark}
             onKeyPress={toggleBookmark}
             data-video-id={videoId}
             data-video-title={videoTitle}
-          />
+          >
+            {isBookmarked ? <FaStar /> : <FaRegStar />}
+          </span>
         </div>
       </div>
     </div>

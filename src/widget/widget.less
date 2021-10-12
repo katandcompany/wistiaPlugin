@@ -71,15 +71,27 @@ body > #mount{
   position:relative;
   width:100%;
 }
+.project-videos > .wistia-card > .bookmark,
+.project-videos > .wistia-card > .share{
+  color:var(--bf-theme-primary,#FFFFFF);
+  font-size: 24px;
+  height: 24px;
+  line-height:24px;
+  position: absolute;
+  text-align: center;
+  top: 16px;
+  width: 24px;
+  z-index: 1;  
+}
 .project-videos > .wistia-card > .bookmark {
-  color:#FFFFFF;
-  font-size: 30px;
-  padding:5px;
-  position:absolute;
-  right:10px;
-  text-shadow: 0px 0px 2px #000000;
-  top:10px;
-  z-index:1;
+  right: 16px;
+}
+.project-videos > .wistia-card > .share {
+  left: 16px;
+}
+.project-videos > .wistia-card > .share > svg,
+.project-videos > .wistia-card > .bookmark > svg{
+  filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.5)) drop-shadow(1px 1px 1px rgba(128,128,128,0.5)) drop-shadow(-1px -1px 1px rgba(128,128,128,0.5));
 }
 .project-videos > .wistia-card > .thumbnail-container{
   border:1px solid #dddddd;
@@ -133,9 +145,13 @@ body > #mount{
   justify-content: flex-end;
 }
 .video-details > .video-metadata > .video-actions > .video-action {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  height:45px;
   padding:12px;
 }
-.video-details > .video-metadata > .video-actions > .video-action.share{
+.video-details > .video-metadata > .video-actions > .video-action.open-in-browser{
   margin-right:auto;
 }
 @media (min-width:640px){

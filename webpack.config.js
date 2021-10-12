@@ -23,7 +23,7 @@ const WebpackConfig = {
     'control/settings/settings': [
       path.join(__dirname, 'src/control/settings/index.js')
     ],
-    'widget/widget': [path.join(__dirname, 'src/widget/index.js')]
+    'widget/widget': ['react-devtools', path.join(__dirname, 'src/widget/index.js')]
   },
 
   output: {

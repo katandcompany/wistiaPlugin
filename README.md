@@ -10,6 +10,7 @@ The Wistia Plugin is a Buildfire plugin built using their React plugin template.
 The core dependencites of this plugin are:
 - React
 - React DOM
+- React Icons
 - React Indiana Drag Scroll
 - React Player
 - SWR
