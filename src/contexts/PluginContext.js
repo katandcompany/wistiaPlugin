@@ -7,36 +7,7 @@ import useSectionFilters from '../hooks/useSectionFilters';
 import useBookmarkActions from '../hooks/useBookmarkActions';
 import useVideoActions from '../hooks/useVideoActions';
 
-export const PluginContext = createContext({
-  bfBookmarks: null,
-  bfDeeplink: null,
-  bfDevice: null,
-  bfHistory: null,
-  bfNavigation: null,
-  bfNotes: null,
-  bfSpinner: null,
-  errorMsg: false,
-  setErrorMsg: () => {},
-  videoId: null,
-  videoTitle: null,
-  setVideo: () => {},
-  unsetVideo: () => {},
-  apiKey: null,
-  projectId: null,
-  sectionFilter: 'All',
-  setCurrentFilter: () => {},
-  allBookmarks: null,
-  retreivedBookmark: null,
-  setAllBookmarks: () => {},
-  getAllBookmarks: () => {},
-  isVideoBookmarked: () => {},
-  toggleBookmark: () => {},
-  setRetreivedBookmark: () => {},
-  retreiveBookmarkedVideo: () => {},
-  viewVideoExternally: () => {},
-  shareVideo: () => {},
-  addVideoNote: () => {}
-});
+export const PluginContext = createContext();
 
 export const PluginProvider = ({ children }) => {
   const {

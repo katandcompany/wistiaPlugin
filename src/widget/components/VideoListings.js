@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import useWistiaApiRequest from '../../hooks/useWistiaApiRequest';
 import { PluginContext } from '../../contexts/PluginContext';
 import { getVideoList, getSectionList } from '../../data/wistia-api-utilities';
@@ -19,6 +20,11 @@ const VideoListings = ({ apiKey, projectId }) => {
     if (wistiaError) setErrorMsg(wistiaError);
   }, [wistiaError]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.scrollTo(0, 0);
+  }, [sectionFilter]);
+
   if (!wistiaError && loading) {
     bfSpinner.show();
   }
@@ -28,11 +34,21 @@ const VideoListings = ({ apiKey, projectId }) => {
   }
 
   if (data) {
+    const videos = getVideoList(data);
+    const sections = getSectionList(videos);
     return (
       <>
-        <SectionList sections={getSectionList(data)} />
-        <VideoList videos={getVideoList(data, sectionFilter)} />
-        <button type="button" onClick={() => setSize(size + 1)}>Load More</button>
+        <SectionList sections={sections} />
+        <InfiniteScroll
+          className="project-videos"
+          dataLength={videos.length}
+          next={() => setSize(size + 1)}
+          hasMore={videos.length % 25 === 0}
+          scrollThreshold={0.9}
+          scrollableTarget={document.body}
+        >
+          <VideoList videos={videos} filter={sectionFilter} />
+        </InfiniteScroll>
       </>
     );
   }

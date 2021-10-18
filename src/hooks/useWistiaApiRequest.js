@@ -9,6 +9,12 @@ const useWistiaApiRequest = (apiKey, projectId) => {
   /* The base url for the fetch request. */
   const baseUrl = `https://api.wistia.com/v1/medias.json?type=Video&access_token=${apiKey}&project_id=${projectId}`;
 
+  /* Function to set the key for the useSWRInfinite function call */
+  const getKey = (pageIndex, previousPageData, endpoint) => {
+    if (previousPageData && !previousPageData.length) return null;
+    return `${endpoint}&page=${pageIndex + 1}&per_page=100`;
+  };
+
   /* The fetch function that fetches and processes the returned data */
   const wistiaFetcher = (...args) => fetch(...args).then(res => res.json());
 
@@ -24,29 +30,27 @@ const useWistiaApiRequest = (apiKey, projectId) => {
     return false;
   };
 
-  /* Function to set the key for the useSWRInfinite function call */
-  const getKey = (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.length) return null;
-    return `${baseUrl}&page=${pageIndex + 1}&per_page=25`;
-  };
-
   /* Variables returned from the useSWRInfinite function call */
   const {
     data,
     error,
     size,
     setSize
-  } = useSWRInfinite(getKey, wistiaFetcher, swrOptions);
+  } = useSWRInfinite((...args) => getKey(...args, baseUrl), wistiaFetcher, swrOptions);
 
   /* Loading status based on the values of error and data. */
-  const loading = !error && !data;
+  const loading = (!error && !data);
 
   /* The error status of the fetch request */
   const wistiaError = getErrorStatus(data, error);
 
+  const projectData = (!data || data.length < 0)
+    ? []
+    : data.reduce((prev, curr) => prev.concat(curr));
+
   /* Return variables needed in components for rendering */
   return {
-    data,
+    data: projectData,
     loading,
     wistiaError,
     size,

@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { PluginContext } from '../../contexts/PluginContext';
 import VideoCard from './VideoCard';
 
-const VideoList = ({ videos }) => {
+const VideoList = ({ videos, filter }) => {
   const { isVideoBookmarked } = useContext(PluginContext);
   const videoCards = videos.map((video) => {
     const isBookmarked = isVideoBookmarked(video.id);
+    const isFiltered = (filter !== 'All' && filter !== video.section);
     return (
       <VideoCard
         key={video.id}
@@ -14,15 +15,11 @@ const VideoList = ({ videos }) => {
         section={video.section}
         posterImg={video.posterImg}
         isBookmarked={isBookmarked}
+        isFiltered={isFiltered}
       />
     );
   });
-
-  return (
-    <div className="project-videos">
-      {videoCards}
-    </div>
-  );
+  return videoCards;
 };
 
 export default VideoList;
