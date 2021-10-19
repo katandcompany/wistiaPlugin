@@ -2,7 +2,7 @@ import useBuildfireObjects from './useBuildfireObjects';
 import useErrorHandler from './useErrorHandler';
 
 const useVideoActions = () => {
-  const { bfDevice, bfNavigation, bfNotes } = useBuildfireObjects();
+  const { bfDevice, bfNavigation } = useBuildfireObjects();
   const { setErrorMsg } = useErrorHandler();
   // External Viewing
   const viewVideoExternally = (event) => {
@@ -24,24 +24,9 @@ const useVideoActions = () => {
     });
   };
 
-  const addVideoNote = (event) => {
-    event.preventDefault();
-    const noteDetails = {
-      imageUrl: 'glyphicon glyphicon-edit',
-      itemId: event.currentTarget.getAttribute('data-video-id'),
-      title: event.currentTarget.getAttribute('data-video-title'),
-      // timeIndex: Math.round(window.player.getCurrentTime())
-    };
-    const callback = (err, data) => {
-      if (err) return setErrorMsg(`There was an error opening the notes dialog. Message: ${err}`);
-      return data;
-    };
-    bfNotes.openDialog(noteDetails, callback);
-  };
   return {
     viewVideoExternally,
     shareVideo,
-    addVideoNote
   };
 };
 

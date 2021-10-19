@@ -16,7 +16,6 @@ export const PluginProvider = ({ children }) => {
     bfDevice,
     bfHistory,
     bfNavigation,
-    bfNotes,
     bfSpinner
   } = useBuildfireObjects();
   const { errorMsg, setErrorMsg } = useErrorHandler();
@@ -38,7 +37,7 @@ export const PluginProvider = ({ children }) => {
     toggleBookmark,
     retreiveBookmarkedVideo
   } = useBookmarkActions();
-  const { viewVideoExternally, shareVideo, addVideoNote } = useVideoActions();
+  const { viewVideoExternally, shareVideo } = useVideoActions();
 
   const value = useMemo(() => ({
     bfBookmarks,
@@ -46,7 +45,6 @@ export const PluginProvider = ({ children }) => {
     bfDevice,
     bfHistory,
     bfNavigation,
-    bfNotes,
     bfSpinner,
     errorMsg,
     setErrorMsg,
@@ -68,7 +66,6 @@ export const PluginProvider = ({ children }) => {
     retreiveBookmarkedVideo,
     viewVideoExternally,
     shareVideo,
-    addVideoNote
   }), [
     errorMsg,
     videoId,

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import ReactPlayer from 'react-player';
 import {
-  FaRegEdit,
   FaExternalLinkAlt,
   FaShareAlt,
   FaStar,
@@ -17,7 +16,6 @@ const VideoDetails = () => {
     isVideoBookmarked,
     viewVideoExternally,
     shareVideo,
-    addVideoNote
   } = useContext(PluginContext);
   const finalVideoURL = `https://katcommunications.wistia.com/medias/${videoId}`;
   const wistiaPlayerConfig = {
@@ -54,17 +52,6 @@ const VideoDetails = () => {
             data-video-url={finalVideoURL}
           >
             <FaExternalLinkAlt />
-          </span>
-          <span
-            className="video-action add-note"
-            role="button"
-            tabIndex="-1"
-            onClick={addVideoNote}
-            onKeyPress={addVideoNote}
-            data-video-url={finalVideoURL}
-            data-video-title={videoTitle}
-          >
-            <FaRegEdit />
           </span>
           <span
             className="video-action share"

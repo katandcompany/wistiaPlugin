@@ -4,7 +4,6 @@ const useBuildfireObjects = () => {
   const bfDevice = buildfire.device;
   const bfHistory = buildfire.history;
   const bfNavigation = buildfire.navigation;
-  const bfNotes = buildfire.notes;
   const bfSpinner = buildfire.spinner;
   return {
     bfBookmarks,
@@ -12,7 +11,6 @@ const useBuildfireObjects = () => {
     bfDevice,
     bfHistory,
     bfNavigation,
-    bfNotes,
     bfSpinner
   };
 };
