@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { hot } from 'react-hot-loader/root';
 import {
-  setSettingsValue,
   getSettingsValue,
   saveCollection,
   getCollection
-} from '../../../data/datastore-functions';
-import { settingsCollectionName, settingsData } from '../../../data/settings-variables';
-import Form from './Form';
-import TextControl from './TextControl';
-import Button from './Button';
+} from '../../data/datastore-functions';
+import { settingsCollectionName } from '../../data/settings-variables';
+import Form from '../components/Form';
+import TextControl from '../components/TextControl';
+import Button from '../components/Button';
 
 const Settings = () => {
   const [apiKey, setApiKey] = useState('');
   const [projectId, setProjectId] = useState('');
+  const [currentSettings, setCurrentSettings] = useState({});
 
   const saveSettings = (event) => {
     event.preventDefault();
-    setSettingsValue(settingsData, 'wistiaApiKey', apiKey);
-    setSettingsValue(settingsData, 'wistiaProjectId', projectId);
-    saveCollection(settingsData, settingsCollectionName, (err) => {
+    saveCollection(currentSettings, settingsCollectionName, (err) => {
       if (err) console.log(err);
     });
   };
@@ -28,11 +26,22 @@ const Settings = () => {
     getCollection(settingsCollectionName, (err, response) => {
       if (err) console.log(err);
       if (response && response.data) {
+        setCurrentSettings(response.data);
         setApiKey(getSettingsValue(response.data, 'wistiaApiKey'));
         setProjectId(getSettingsValue(response.data, 'wistiaProjectId'));
       }
     });
   }, []);
+
+  useEffect(() => {
+    setCurrentSettings({
+      ...currentSettings,
+      ...{
+        wistiaApiKey: apiKey,
+        wistiaProjectId: projectId
+      }
+    });
+  }, [apiKey, projectId]);
 
   return (
     <Form id="settingsForm" formAction="#" submitHandler={saveSettings}>

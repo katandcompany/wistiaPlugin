@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
-    "debug": "react-devtools",
+    "devtools": "NODE_ENV=development react-devtools",
     "test": "eslint src/",
     "build": "webpack --config webpack.config.js"
   },

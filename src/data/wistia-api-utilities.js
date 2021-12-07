@@ -35,7 +35,7 @@ export const getSectionList = (videos) => {
   const sectionList = [...new Set(
     videos.map(item => item.section)
   )];
-  const filteredSectionList = sectionList.filter(value => value !== 'None');
+  const filteredSectionList = sectionList.filter(value => value !== 'None' && value !== undefined);
   filteredSectionList.sort();
   filteredSectionList.unshift('All');
   return filteredSectionList;

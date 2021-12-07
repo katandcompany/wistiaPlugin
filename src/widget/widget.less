@@ -1,6 +1,16 @@
+:root, .root{
+  --body-bg: var(--bf-theme-background, #FFFFFF);
+  --body-headings-color: var(--bf-theme-body-text, #000000);
+  --body-text-color: var(--bf-theme-body-text, #000000);
+  --border-color: #DDDDDD;
+  --filter-bg: var(--bf-theme-primary,#000000);
+  --filter-text: var(--bf-theme-title-bar-text-icons, #FFFFFF);
+  --card-actions-color: var(--body-text-color, #000000);
+  --card-caption: var(--body-headings-color, #000000);
+}
 body{
-  background-color:var(--bf-theme-background,#FFFFFF);
-  color:var(--bf-theme-body-text,#000000);
+  background-color:var(--body-bg);
+  color:var(--body-text-color);
 }
 html,
 body,
@@ -24,7 +34,7 @@ body > #mount{
   margin-bottom:0;
 }
  .project-sections{
-  background-color:var(--bf-theme-primary,#FFFFFF);
+  background-color:var(--filter-bg);
   display:flex;
   flex-wrap:nowrap;
   justify-content:flex-start;
@@ -39,6 +49,7 @@ body > #mount{
   z-index:100;
 }
 .project-sections a.btn{
+  background-color:var(--filter-bg);
   border:none;
   -moz-border-radius:0;
   -webkit-border-radius:0;
@@ -46,7 +57,8 @@ body > #mount{
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   box-sizing:border-box;
-  color:var(--bf-theme-body-text,#000000) !important;
+  color:var(--filter-text);
+  filter: brightness(100%);
   flex:1 0 auto;
   font-size:15px;
   font-weight:500;
@@ -54,6 +66,11 @@ body > #mount{
   line-height:20px;
   margin:0;
   padding:15px;
+}
+.project-sections a.btn:focus,
+.project-sections a.btn:hover,
+.project-sections a.btn.active{
+  filter: brightness(120%);
 }
 .project-videos{
   display:flex;
@@ -63,7 +80,7 @@ body > #mount{
   padding:60px 20px 10px 20px;
 }
 .project-videos > .wistia-card{
-  border:1px solid #dddddd !important;
+  border:1px solid var(--border-color,#DDDDDD) !important;
   height:auto;
   margin:10px 0;
   overflow:hidden;
@@ -83,7 +100,7 @@ body > #mount{
 }
 .project-videos > .wistia-card > .bookmark,
 .project-videos > .wistia-card > .share{
-  color:var(--bf-theme-primary,#FFFFFF);
+  color:var(--card-actions-color);
   font-size: 24px;
   height: 24px;
   line-height:24px;
@@ -104,7 +121,7 @@ body > #mount{
   filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.625)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.625)) drop-shadow(2px 2px 1px rgba(128,128,128,0.5)) drop-shadow(-2px -2px 1px rgba(128,128,128,0.5));
 }
 .project-videos > .wistia-card > .thumbnail-container{
-  border:1px solid #dddddd;
+  border:1px solid var(--border-color);
   display:block;
   height:auto;
   overflow:hidden;
@@ -119,12 +136,12 @@ body > #mount{
 }
 .project-videos > .wistia-card > .caption{
   clear:both;
-  color:var(--bf-theme-body-text,#000000);
   display:block;
   margin-top:10px;
   width:100%;
 }
 .project-videos > .wistia-card > .caption > .caption-title{
+  color:var(--card-caption);
   font-size:18px;
 }
 .video-details{
@@ -140,7 +157,8 @@ body > #mount{
   left: 0;
 }
 .video-details > .video-metadata > .video-title{
-  border-top:1px solid #dddddd;
+  border-top:1px solid var(--border-color);
+  color:var(--body-headings-color);
   font-weight:700;
   line-height:1.25em;
   margin:0;
@@ -148,8 +166,8 @@ body > #mount{
 }
 .video-details > .video-metadata > .video-actions {
   align-items: center;
-  border-bottom: 1px solid #dddddd;
-  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
   display: flex;
   font-size: 21px;
   justify-content: space-between;
@@ -158,6 +176,7 @@ body > #mount{
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   box-sizing:border-box;
+  color:var(--card-actions-color); 
   height:45px;
   padding:12px;
 }

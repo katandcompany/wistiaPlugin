@@ -8,7 +8,7 @@
       "enabled":false
     },
     "design":{
-      "enabled":false
+      "enabled":true
     },
     "settings":{
       "enabled":true

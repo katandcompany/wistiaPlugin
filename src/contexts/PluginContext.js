@@ -25,7 +25,11 @@ export const PluginProvider = ({ children }) => {
     setVideo,
     unsetVideo
   } = useCurrentVideo();
-  const { apiKey, projectId } = usePluginSettings();
+  const {
+    apiKey,
+    projectId,
+    pluginTheme
+  } = usePluginSettings();
   const { sectionFilter, setCurrentFilter } = useSectionFilters();
   const {
     allBookmarks,
@@ -54,6 +58,7 @@ export const PluginProvider = ({ children }) => {
     unsetVideo,
     apiKey,
     projectId,
+    pluginTheme,
     sectionFilter,
     setCurrentFilter,
     allBookmarks,

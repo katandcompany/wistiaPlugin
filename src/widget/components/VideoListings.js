@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import useWistiaApiRequest from '../../hooks/useWistiaApiRequest';
 import { PluginContext } from '../../contexts/PluginContext';
 import { getVideoList, getSectionList } from '../../data/wistia-api-utilities';
@@ -7,7 +8,11 @@ import SectionList from './SectionList';
 import VideoList from './VideoList';
 
 const VideoListings = ({ apiKey, projectId }) => {
-  const { bfSpinner, sectionFilter, setErrorMsg } = useContext(PluginContext);
+  const {
+    bfSpinner,
+    sectionFilter,
+    setErrorMsg,
+  } = useContext(PluginContext);
   const {
     data,
     loading,
@@ -38,7 +43,7 @@ const VideoListings = ({ apiKey, projectId }) => {
     const sections = getSectionList(videos);
     return (
       <>
-        <SectionList sections={sections} />
+        <ScrollContainer className="project-sections" vertical={false}><SectionList sections={sections} /></ScrollContainer>
         <InfiniteScroll
           className="project-videos"
           dataLength={videos.length}

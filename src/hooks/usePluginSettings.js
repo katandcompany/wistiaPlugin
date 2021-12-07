@@ -13,7 +13,8 @@ const usePluginSettings = (errorHandler) => {
       if (response && response.data) {
         setSettingsData({
           apiKey: getSettingsValue(response.data, 'wistiaApiKey'),
-          projectId: getSettingsValue(response.data, 'wistiaProjectId')
+          projectId: getSettingsValue(response.data, 'wistiaProjectId'),
+          pluginTheme: getSettingsValue(response.data, 'pluginTheme')
         });
       }
     });
