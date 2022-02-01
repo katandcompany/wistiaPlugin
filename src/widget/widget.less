@@ -79,7 +79,11 @@ body > #mount{
   align-items:flex-start;
   padding:60px 20px 10px 20px;
 }
-.project-videos > .wistia-card{
+.project-videos .single-motion-wrapper{
+  flex-basis:100%;
+  width:100%;
+}
+.project-videos .wistia-card{
   border:1px solid var(--border-color,#DDDDDD) !important;
   height:auto;
   margin:10px 0;
@@ -88,18 +92,8 @@ body > #mount{
   position:relative;
   width:100%;
 }
-.project-videos > .wistia-card.filtered{
-  display:none;
-  font-size:0;
-  height:0;
-  line-height:0;
-  margin:0;
-  padding:0;
-  visibility:hidden;
-  width:0;
-}
-.project-videos > .wistia-card > .bookmark,
-.project-videos > .wistia-card > .share{
+.project-videos .wistia-card > .bookmark,
+.project-videos .wistia-card > .share{
   color:var(--card-actions-color);
   font-size: 24px;
   height: 24px;
@@ -110,17 +104,17 @@ body > #mount{
   width: 24px;
   z-index: 1;  
 }
-.project-videos > .wistia-card > .bookmark {
+.project-videos .wistia-card > .bookmark {
   right: 16px;
 }
-.project-videos > .wistia-card > .share {
+.project-videos .wistia-card > .share {
   left: 16px;
 }
-.project-videos > .wistia-card > .share > svg,
-.project-videos > .wistia-card > .bookmark > svg{
+.project-videos .wistia-card > .share > svg,
+.project-videos .wistia-card > .bookmark > svg{
   filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.625)) drop-shadow(-1px -1px 1px rgba(0,0,0,0.625)) drop-shadow(2px 2px 1px rgba(128,128,128,0.5)) drop-shadow(-2px -2px 1px rgba(128,128,128,0.5));
 }
-.project-videos > .wistia-card > .thumbnail-container{
+.project-videos .wistia-card > .thumbnail-container{
   border:1px solid var(--border-color);
   display:block;
   height:auto;
@@ -128,19 +122,19 @@ body > #mount{
   padding-bottom:56.25%;
   position:relative;
 }
-.project-videos > .wistia-card > .thumbnail-container > img{
+.project-videos .wistia-card > .thumbnail-container > img{
   left:50%;
   position:absolute;
   transform: translate(-50%, -50%);
   top:50%;
 }
-.project-videos > .wistia-card > .caption{
+.project-videos .wistia-card > .caption{
   clear:both;
   display:block;
   margin-top:10px;
   width:100%;
 }
-.project-videos > .wistia-card > .caption > .caption-title{
+.project-videos .wistia-card > .caption > .caption-title{
   color:var(--card-caption);
   font-size:18px;
 }
@@ -186,12 +180,12 @@ body > #mount{
     flex-direction:row;
     flex-wrap:wrap;
   }
-  .project-videos > .wistia-card{
+  .project-videos .single-motion-wrapper{
     flex-basis:calc(50% - 10px);
   }
 }
 @media (min-width:1024px){
-  .project-videos > .wistia-card{
+  .project-videos .single-motion-wrapper{
     flex-basis:calc(33.333333% - 10px);
   }    
 }

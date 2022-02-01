@@ -8,7 +8,6 @@ const VideoCard = ({
   section,
   posterImg,
   isBookmarked,
-  isFiltered
 }) => {
   const {
     bfHistory,
@@ -34,7 +33,7 @@ const VideoCard = ({
 
   return (
     <a
-      className={`wistia-card thumbnail ${isFiltered ? 'filtered' : ''}`}
+      className="wistia-card thumbnail"
       role="button"
       data-section-id={section}
       data-video-id={id}
