@@ -7,7 +7,7 @@ The Wistia Plugin is a Buildfire plugin built using their React plugin template.
 - Modules
 - Minification
 
-The core dependencites of this plugin are:
+The core dependencies of this plugin are:
 - React
 - React DOM
 - React Icons
@@ -15,7 +15,7 @@ The core dependencites of this plugin are:
 - React Player
 - SWR
 ## Getting Started
-Be sure to have the latest [BuildFire CLI](https://github.com/BuildFire/sdk-cli) installed in your system.
+Be sure to have the GitHub CLI and the latest [BuildFire CLI](https://github.com/BuildFire/sdk-cli) installed in your system.
 
 ### Download the latest SDK if you haven't already
 `$ buildfire create`
