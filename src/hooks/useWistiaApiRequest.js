@@ -7,16 +7,23 @@ const useWistiaApiRequest = (apiKey, projectId) => {
   }
 
   /* The base url for the fetch request. */
-  const baseUrl = `https://api.wistia.com/v1/medias.json?type=Video&access_token=${apiKey}&project_id=${projectId}`;
+  const baseUrl = `https://api.wistia.com/v1/medias.json?type=Video&per_page=100&project_id=${projectId}`;
 
-  /* Function to set the key for the useSWRInfinite function call */
-  const getKey = (pageIndex, previousPageData, endpoint) => {
+  /* Function that sets the key for the useSWRInfinite function call */
+  const getKey = (pageIndex, previousPageData, endpoint, token) => {
     if (previousPageData && !previousPageData.length) return null;
-    return `${endpoint}&page=${pageIndex + 1}&per_page=100`;
+    return [`${endpoint}&page=${pageIndex + 1}`, token];
   };
 
-  /* The fetch function that fetches and processes the returned data */
-  const wistiaFetcher = (...args) => fetch(...args).then(res => res.json());
+  /* The fetch function that fetches data from the requested endpoint and processes it */
+  const wistiaFetcher = (url, token) => {
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    return fetch(url, fetchOptions).then(res => res.json());
+  };
 
   /* options for the useSWRInfinite function call */
   const swrOptions = {
@@ -26,7 +33,7 @@ const useWistiaApiRequest = (apiKey, projectId) => {
   /* Custom error handler. Checks if the data returned has an error property. */
   const getErrorStatus = (data, error) => {
     if (typeof error !== 'undefined') return error;
-    if (typeof data !== 'undefined' && data.error) return data.error;
+    if (typeof data !== 'undefined' && data[0] && data[0].error) return data[0].error;
     return false;
   };
 
@@ -36,7 +43,7 @@ const useWistiaApiRequest = (apiKey, projectId) => {
     error,
     size,
     setSize
-  } = useSWRInfinite((...args) => getKey(...args, baseUrl), wistiaFetcher, swrOptions);
+  } = useSWRInfinite((...args) => getKey(...args, baseUrl, apiKey), wistiaFetcher, swrOptions);
 
   /* Loading status based on the values of error and data. */
   const loading = (!error && !data);
@@ -44,9 +51,13 @@ const useWistiaApiRequest = (apiKey, projectId) => {
   /* The error status of the fetch request */
   const wistiaError = getErrorStatus(data, error);
 
-  const projectData = (!data || data.length < 0)
-    ? []
-    : data.reduce((prev, curr) => prev.concat(curr));
+  /* The project data to return */
+  const projectData = (
+    typeof data === 'undefined' ||
+    data.length <= 0 ||
+    typeof data[0].error !== 'undefined') ?
+      [] :
+      data.reduce((prev, curr) => prev.concat(curr));
 
   /* Return variables needed in components for rendering */
   return {

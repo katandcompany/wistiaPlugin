@@ -13,6 +13,7 @@ const VideoListings = ({ apiKey, projectId }) => {
     sectionFilter,
     setErrorMsg,
   } = useContext(PluginContext);
+  
   const {
     data,
     loading,
