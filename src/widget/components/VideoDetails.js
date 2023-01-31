@@ -12,6 +12,8 @@ const VideoDetails = () => {
   const {
     videoId,
     videoTitle,
+    videoCreated,
+    videoUpdated,
     toggleBookmark,
     isVideoBookmarked,
     viewVideoExternally,
@@ -27,6 +29,26 @@ const VideoDetails = () => {
       },
     },
   };
+  const localeLocation = 'en-US';
+  const localeDateOptions = {
+    'month': '2-digit',
+    'day': '2-digit',
+    'year': 'numeric',
+  };
+  const localeTimeOptions = {
+    'hour': '2-digit',
+    'minute': '2-digit'
+  };
+
+  const formatDateString = (date, locale, dateOptions, timeOptions) => {
+    const temp_date = new Date(date);
+    const temp_day = temp_date.toLocaleString(locale, dateOptions);
+    const temp_time = temp_date.toLocaleString(locale, timeOptions);
+    return `${temp_day} ${temp_time}`;
+  };
+
+  const formattedCreatedDate = formatDateString(videoCreated, localeLocation, localeDateOptions, localeTimeOptions);
+  const formattedUpdatedDate = formatDateString(videoUpdated, localeLocation, localeDateOptions, localeTimeOptions);
   const isBookmarked = isVideoBookmarked(videoId);
 
   return (
@@ -42,6 +64,8 @@ const VideoDetails = () => {
       </div>
       <div className="video-metadata">
         <h1 className="video-title h4">{videoTitle}</h1>
+        <p className="video-created"><strong>Uploaded:</strong> {formattedCreatedDate}</p>
+        <p className="video-updated"><strong>Updated:</strong> {formattedUpdatedDate}</p>
         <div className="video-actions">
           <span
             className="video-action open-in-browser"

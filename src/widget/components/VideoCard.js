@@ -7,6 +7,8 @@ const VideoCard = ({
   title,
   section,
   posterImg,
+  created,
+  updated,
   isBookmarked,
 }) => {
   const {
@@ -26,6 +28,8 @@ const VideoCard = ({
     const handlerData = {
       id: clickedCard.getAttribute('data-video-id'),
       title: clickedCard.getAttribute('data-video-title'),
+      created: clickedCard.getAttribute('data-video-created'),
+      updated: clickedCard.getAttribute('data-video-updated')
     };
     setVideo(handlerData);
     bfHistory.push('Video Details', { showLabelInTitlebar: true });
@@ -38,6 +42,8 @@ const VideoCard = ({
       data-section-id={section}
       data-video-id={id}
       data-video-title={title}
+      data-video-created={created}
+      data-video-updated={updated}
       onClick={handleClick}
       onKeyPress={handleClick}
       href={`#${id}`}

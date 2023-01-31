@@ -23,6 +23,8 @@ const VideoList = ({ videos, filter }) => {
           title={video.title}
           section={video.section}
           posterImg={video.posterImg}
+          created={video.created}
+          updated={video.updated}
           isBookmarked={isBookmarked}
         />
       </motion.div>

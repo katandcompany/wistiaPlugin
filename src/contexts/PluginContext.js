@@ -22,6 +22,8 @@ export const PluginProvider = ({ children }) => {
   const {
     videoId,
     videoTitle,
+    videoCreated,
+    videoUpdated,
     setVideo,
     unsetVideo
   } = useCurrentVideo();
@@ -54,6 +56,8 @@ export const PluginProvider = ({ children }) => {
     setErrorMsg,
     videoId,
     videoTitle,
+    videoCreated,
+    videoUpdated,
     setVideo,
     unsetVideo,
     apiKey,
